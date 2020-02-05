@@ -1,0 +1,27 @@
+{
+"Resources":
+{
+ "test1":
+ {
+ "Type": "AWS::EC2::Instance",
+ "Properties":
+ {
+   "ImageId": "ami-0ac019f4fcb7cb7e6",
+   "InstanceType": "t2.micro",
+   "KeyName":"oct30"
+ }
+ },
+ "vol1":
+ {
+  "Type":"AWS::EC2::Volume",
+  "Properties":
+  {
+   "Size":"10",
+   "VolumeType":"gp2",
+   "AvailabilityZone":"us-east-1b"
+  }
+  
+ }
+ 
+}
+}

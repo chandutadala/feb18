@@ -1,0 +1,40 @@
+Creating Custom AMI for VPC Practice
+=====================================
+1) Launch Ubuntu Ec2 instance
+2) Login into Ec2 instance
+3) Reset the password of "ubuntu" user
+    sudo passwd ubuntu
+4) Change the "PasswordAuthentication" parameter
+   value to "yes" inside "/etc/ssh/sshd_config" file.
+   
+       i)   sudo su
+	   ii)  cd /etc/ssh
+	   iii) vim sshd_config
+	   iv) goto into insert mode by typing "i"
+	   v) change the "PasswordAuthentication" value
+	      "yes"
+	   vi) save and quit
+	        a) press "esc"
+			b) wq
+5) Do the changes in "/etc/cloud/cloud.cfg" 			
+     i) sudo su
+	 ii) cd /etc/cloud
+	 iii) vim cloud.cfg
+	 iv) change the "lock_passwd" to "False"
+	 v) save and quit
+6) Restart ssh service
+     sudo service ssh restart
+	 
+7) Create a Image(AMI) of Ec2 Instance.
+   i) Goto Ec2 dashboard
+   ii) Select the instance
+   iii) goto "Actions"-->Image-->Create Image
+   iv) give any name to the IMage
+    v) Click on "Create"
+8) Launch ec2 based on Step7 AMI.
+   i) Goto EC2 Dashboard
+   ii) goto "IMAGES" Section
+   iii) Click "AMIs"
+   iv) Select the "AMI"
+    v) Click on "Launch"
+9) Try to login to step8 instance without pem file	

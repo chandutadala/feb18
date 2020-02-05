@@ -1,0 +1,43 @@
+{
+ "Parameters":
+ {
+  "env":
+  {
+   "Type": "String"
+  },
+  "az":
+  {
+  "Type": "String"
+  }
+ },
+ "Conditions":
+ {
+  "c1":
+  { 
+    "Fn::Equals":[{"Ref":"env"},"dev"]
+  },
+  "c2":
+  { 
+    "Fn::Equals":[{"Ref":"az"},"1a"]
+  },
+  "c3":
+  {
+    "Fn::And":[{"Condition":"c1"},{"Condition":"c2"}]
+  }
+ },
+ "Resources":
+ {
+   "vol":
+   {
+    "Type": "AWS::EC2::Volume",
+	"Condition": "c3",
+	"Properties":
+	{
+	  "AvailabilityZone":"us-east-1a",
+	  "VolumeType": "gp2",
+	  "Size": "20"
+	}  
+ }
+ 
+}
+}

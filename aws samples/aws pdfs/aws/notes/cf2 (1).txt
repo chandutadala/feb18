@@ -1,0 +1,28 @@
+{
+"Resources":
+{
+ "inst":
+ {
+ "Type": "AWS::EC2::Instance",
+ "Properties":
+ {
+   "ImageId": "ami-0ac019f4fcb7cb7e6",
+   "InstanceType": "t2.micro",
+   "KeyName":"oct30"
+ }
+ },
+ "Elasticip":
+ {
+ "Type":"AWS::EC2::EIP"
+ },
+ "ec2eip":
+ {
+ "Type":"AWS::EC2::EIPAssociation",
+ "Properties":
+ {
+  "InstanceId" : {"Ref":"inst"},
+  "EIP":{"Ref":"Elasticip"}
+ }
+ }
+ }
+}

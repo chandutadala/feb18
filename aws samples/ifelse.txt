@@ -1,0 +1,40 @@
+{
+  "Parameters":
+  {
+    "envtype":
+	{
+	  "Type": "String"
+	}
+  },
+  "Conditions":
+  {
+   "c1":
+   {
+      "Fn::Equals":[{"Ref":"envtype"},"dev"]
+   },
+   "c2":
+   {
+      "Fn::Equals":[{"Ref":"envtype"},"test"]
+   }
+   
+  },
+  "Resources":
+  {
+     "ec2":
+	 {
+	  "Type" : "AWS::EC2::Instance",
+		 "Properties" :
+		 { 
+		    "ImageId": "ami-0c5199d385b432989",
+			"KeyName":"ASGKeypair",
+			"AvailabilityZone":"ap-southeast-1a",
+			"InstanceType":
+			{
+"Fn::If":["c1","t2.micro",{"Fn::If":["c2","t2.small","t2.nano"]}]			
+			}
+	 }
+  }
+  
+  
+}  
+}

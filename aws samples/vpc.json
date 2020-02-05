@@ -1,0 +1,91 @@
+{
+  "Resources":
+  {
+    "vpc1":
+	{
+	  "Type": "AWS::EC2::VPC",
+	  "Properties":
+	  {
+	    "CidrBlock": "10.0.0.0/24"
+	  }
+	},
+	"Sn1":
+	{
+	  "Type" : "AWS::EC2::Subnet",
+	  "Properties":
+	  {
+	      "CidrBlock" : "10.0.0.0/26",
+		  "VpcId": {"Ref":"vpc1"}
+	  }
+	},
+	"Sn2":
+	{
+	  "Type" : "AWS::EC2::Subnet",
+	  "Properties":
+	  {
+	      "CidrBlock" : "10.0.0.64/26",
+		  "VpcId": {"Ref":"vpc1"}
+	  }
+	},
+	"Sn3":
+	{
+	  "Type" : "AWS::EC2::Subnet",
+	  "Properties":
+	  {
+	      "CidrBlock" : "10.0.0.128/26",
+		  "VpcId": {"Ref":"vpc1"}
+	  }
+	},
+	"IGW":
+	{
+	  "Type" : "AWS::EC2::InternetGateway"
+	},
+	"VPVIGW":
+	{
+	   "Type": "AWS::EC2::VPCGatewayAttachment",
+	   "Properties":
+	   {
+	      "InternetGatewayId": {"Ref":"IGW"},
+		  "VpcId": {"Ref":"vpc1"}
+	   }
+	},
+	"SN1RT1":
+	{
+	   "Type" : "AWS::EC2::RouteTable",
+	   "Properties":
+	   {
+	      "VpcId": {"Ref":"vpc1"}
+	   }
+	},
+	"SN2RT2":
+	{
+	   "Type" : "AWS::EC2::RouteTable",
+	   "Properties":
+	   {
+	      "VpcId": {"Ref":"vpc1"}
+	   }
+	},
+	"RT1SN1IGW":
+	{
+	  "Type" :"AWS::EC2::Route",
+	  "Properties":
+	  {
+	   "RouteTableId": {"Ref":"SN1RT1"},
+	   "DestinationCidrBlock": "0.0.0.0/0",
+	   "GatewayId": {"Ref":"IGW"}
+	   
+	  }
+	},
+	"SN1RT1Ass":
+	{
+	  "Type" : "AWS::EC2::SubnetRouteTableAssociation",
+	  "Properties":
+	  {
+	   "RouteTableId" : {"Ref":"SN1RT1"},
+	   "SubnetId": {"Ref":"Sn1"}
+	  }
+	}
+	
+	
+  }
+}

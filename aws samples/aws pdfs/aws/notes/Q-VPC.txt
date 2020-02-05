@@ -1,0 +1,87 @@
+VPC :
+1)
+a) Create custom VPC ( 10.0.0.0/16)
+b) create 3 subnets
+    Sn1: (10.2.1.0/24)
+    sn2: (10.2.2.0/24)
+    sn3: (10.2.3.0/24)
+c) Create Internet Gateway and attach it to VPC
+d) Create new routable i.e. RT1
+e) Edit RT1 (Step3) , add internet gateway details.
+d) add RT1 to SN1
+e) Check Route table entry for SN2 & SN3 
+f) Enable auto assingment of Public ip to SN1
+g) Launch an ec2 instance in SN1 & install java (open-jdk)
+h) Launch an ec2 instance in SN2 & try to open google.com page
+i) Launch an ec2 instance in SN3
+
+
+========================================================================
+2)
+a) Create custom VPC ( 10.0.0.0/16)
+b) create 3 subnets
+    Sn1: (10.2.1.0/24)
+    sn2: (10.2.2.0/24)
+    sn3: (10.2.3.0/24)
+c) Create Internet Gateway and attach it to VPC
+d) Create new routable i.e. RT1
+e) Edit RT1 (Step3) , add internet gateway details.
+d) add RT1 to SN1
+e) Check Route table entry for SN2 & SN3 
+f) Enable auto assingment of Public ip to SN1
+g) Enable auto assingment of Public ip to SN2
+h) Launch an ec2 instance in SN2 and connect to that instnace.
+
+
+3)Create custom vpc
+a) create 2 subnets
+b) make one subnets as public and other one has private
+c) launch one ec2 instance in private subnet
+d) launch one ec2 instance in public subnet
+e) block all ssh & http request from private subnet
+f) block http requests from step4 instance 
+  ( public subnet instance )
+=====================================================================
+4)
+Create custom vpc
+a) create 2 subnets
+b) make one subnets as public and other one has private
+c) launch one ec2 instance in private subnet
+d) launch one ec2 instance in public subnet & connet the
+   public subnet machine.
+e) connect private subnet machine and install
+   a java into that machine.
+===========================================
+5)
+Create custom vpc (10.2.0.0/16)
+1) create 3 subnets
+    Sn1: (10.2.1.0/24)
+	sn2: (10.2.2.0/24)
+	sn3: (10.2.3.0/24)
+2) Allow ssh request to "sn3" only from sn2.
+3) for sn3 ,Allow access to webserver(ex :apache2) which is in sn2 .
+==================================================================================
+1) What is VPC?
+2) What is Subnets?
+3) How to define VPC size?
+4) What are the default things will be created when we create custom VPC?
+5) What is Route Table?
+6) How NACL is diffrent from Security Group?
+8) How to Block all ssh O/B request from   from Subnet.
+9) What are the configrations we need to do to allow   HTTP request into subnet?
+10) What is VPC peering?
+11) What is NAT Gateway?
+12) How NAT Gateway is diff with IGW?
+13) How to assign multiple IGW to VPC?
+14) What is default entry in Route table?
+15) How many NACL we can assign to Subnet?
+16) How many Route Table we can assign to Subnet?   
+17) How to access internet in Private Subnet?
+18) how to identify the public and private subnets?
+19) how to assign NAT Gateway to Public Subnet?
+20) NAT gateway is assosiated with private subnet,but private subnet instances not able to access   internet, what might be the problem?	
+21) What is diff b/w NACL and SG?
+22) How to block all HTTP from Instance?
+23) what is stateful and stateless?
+24) How to connect to other VPC instance    using privete IP?
+25) what are the prereq to create vpc peering?	 

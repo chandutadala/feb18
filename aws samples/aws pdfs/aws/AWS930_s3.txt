@@ -1,0 +1,171 @@
+S3 (Simple Simple Storge Service):
+===================================
+1) S3 is an Object based storge, If Storge is Object
+based storge ,it is not possible to install softwares.
+2) Its a unlimited storge.
+3) It is not possible to attach S3 bucket to 
+Ec2 instance.
+4) Its a global level service,but bucket are created 
+at region level.
+5) Per Account we can create 100 buckets, It's just 
+a soft limit.
+6) The max file size ,which can be uploaded into 
+s3 bucket is 5 TB
+
+Bucket:
+======
+1) It a container of objects(Files,imagaes,etc)
+2) Bucket is having it own featutes
+    a) Versioning
+	b) Access control (ACL)
+	c) We can write policies
+	d) We can write Life Cycle rules
+	e) We can Write Cross region Replication
+	    rules.
+3) Bucket name's are DNS compliance
+
+Type of S3 storges:
+===================
+1) Standard (A:99.99%, D:99.999999999 (11 9's))
+2) Standard-IA :(A:99.9%, D:99.9999999 (9 9's))
+3) RR :(A:99.9%, D:99.999999999 (9 9's))
+4) Glacier :(A:N/A D:99.999999999)
+
+We can differntiate s3 storge types based on 3 things:
+
+1) Availability
+2) Duarabulity
+3) Pricing
+		
+Create S3 Bucket:
+=================
+1) Goto S3 dashboard
+2) Click on "Create Bucket"
+3) Give any name to the bucket.
+4) Select any Region
+5) Click On "Create"	
+
+Uploading Files into S3 Bucket:
+===============================
+1) Goto S3 dashboard
+2) Click on bucket 
+3) Click on "Upload" Button
+4) select any file from your local machine
+5) clik on open and upload
+
+Note : Whenever we upload any object into bucket,
+   by default it an private, That means no can that
+   object.
+
+Versioning:
+==========
+1) If we Enable Versioning on S3 bucket, S3 maintains
+   Each upload as saparate version.
+2) Each version of file will have unique  url
+3)If you want to see all the versions of a file,
+ we need to enable "show" button of "Versions" field.
+4) If versioning is enabled, if delete latest version,
+S3 will add delete marker,So that we cannt see the 
+ file. If delete the delete marker, we can able to 
+see the all the version of the file.
+
+Enabling versioning on S3 bucket:
+=================================
+1) Goto S3 dashboard.
+2) select the bucket
+3) click on "properties" tab
+4) Click on "Versioning"
+5) Click On Enable.
+
+S3 LifeCycle Rules:
+===================
+1) If you want to move objects from  one s3 storge 
+class to other s3 storge class automatically we need
+to define life LifeCycle rules.
+2) If you want to move object from Standard to Standard-IA
+storge ,Object must be 30 days in "Standard" Storge
+class.
+3)If you want to move object from Standard-IA to 
+Glacier storge ,Object must be 30 days in "Standard-IA" Storge
+class.
+
+Nav:
+===
+a) Goto s3 dash board
+b) Select the s3 bucket
+c) click on "Management" Tab
+d) Click on "Life Cycle"
+e) Click On "Add LifeCycle Rule"
+f) Give any name to the rule, Ckick on "Next"
+g) Select any version or both
+f) Add transition
+g) Define the rules.
+h) click on next->next>save
+
+Note : We can define multiple unique LifeCycle rules
+S3 bucket.
+
+
+Cross Region Replication:
+=========================
+1) To Implement CRR Both the buckets must be in
+   different region & Versioning need to be Enabled
+2) In CRR ,if we upload object into one bucket
+   same object will be replicated into other region
+    bucket.
+Nav:
+===
+a) Goto S3 dashboard
+b) Select the bucket
+c) Click on "Management" tab
+d) Click on Replication
+e) Click on "Get Started"
+f) Select the destination Bucket
+g) Click on "IAM Role" Field Drop downbox,
+   select "Create New Iam Role"
+h) Give any name to rule.
+i) Click on Next --> Save
+j) Try to upload object into the bucket from 
+   your local machine, Samething will replicated into
+   other bucket also.
+   
+Coping objects from ubuntu Ec2 instance s3 bucket
+=================================================
+1) Launch  an ubuntu ec2 instance
+2) Login into Ec2 instance
+3) Install AWS cli Software
+    sudo apt-get update
+	sudo apt-get install awscli
+4) Verify aws cli is installed or not by using
+below command
+      aws --version
+5) If you want run aws cli command we to configure
+  "AccessKey" "Secreat AccessKey" Detail of
+   AWS account
+    a) Goto AWS Dashboard
+    b) Click on Account Name (^)	
+	c) Click on "My Security Credentials"
+	d) Click on "Access keys (access key ID and secret access key)"
+	e) Click on "Create New access key"
+	f) Click on Download file.
+6) Login into Ec2 instance
+7) Run below command
+    aws configure
+8) Provide Accesskey and secret accesskey detail,
+   which are inside downloaded	file
+9) give any aws region code (ex :us-east-2)   
+10) Click on enter
+11) Now we can copy any file from 
+    ec2 instance s3 bucket by using "aws s3 cp"
+	command.
+
+    Syntas: aws s3 cp <filename> <bucket_name>
+    ex : aws s3 cp /etc/passwd s3://intelliq28	
+	    aws s3 cp s3://intelliq28/1.txt .
+		aws s3 ls
+		aws s3 ls s3://intelliq28
+
+ 
+		
+		
+		

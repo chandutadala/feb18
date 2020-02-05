@@ -1,0 +1,35 @@
+EFS(Elastic File System):
+=========================
+1) The purpose of EFS is to Share the files between 
+Linux based EC2 instances with in a region.
+2) EFS is an unlimited storge.
+3) EFS can be attached to multiple ec2 instances, Same is 
+   not possible for EBS volumes.
+4) When we create EFS, Default VPC Security Group is 
+attached to it, Same we need to attach to EC2 instances,
+than only we can mount ec2 instance to EFS.   
+5) Compare with EBS ,EFS is less pricing.
+
+Nav:
+====
+1) Goto EFS Dash Board
+2)Click on "Create File System"
+3) Click on "Next Step" --> "Next Step"
+4) Click On create File System
+
+Mount EC2 instance to EFS
+==============================
+1) Launch 2 Linux Ec2 Instances
+2) Login into EC2 Instance
+3) Instance "nfs-common" software by using below command
+    "sudo apt-get install nfs-common"
+4) Create any directory
+    mkdir test1
+5) Mount Step(4) directory to EFS by following the
+   EFS dash board instructions 
+   ("Amazon EC2 mount instructions"	)
+6) Do the same thing all other ec2 instances
+7) Create any files inside "test1" directory.
+  same files will be accessble from all other servers.
+===================================================  
+	
